@@ -1,0 +1,63 @@
+<div class = "container">
+  <div class="row">  
+    <div class="col-xs-12 text-center" >
+      <h1>The Best Burgers in Town!</h1>
+      <img src="https://media.timeout.com/images/103902673/image.jpg" alt="burger" height="200">
+    </div>
+
+  <div class="col-xs-6">
+    <div class = "row">
+        <h2>Burgers to eat!</h2>
+        <ul>
+          {{#each burgers}}
+            {{#unless this.devoured}}
+            <div class = "col-xs-8">
+              {{this.id}}. {{this.name}}
+            </div>
+            <div class = "col-xs-4 text-center">
+              <form action="/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button type="submit">Eat It!</button>
+              </form>
+            </div>
+                          
+            {{/unless}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <div class = "col-xs-6">
+      <h2>Eaten Burgers!</h2>
+      <ul>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            
+              {{this.id}}. {{this.name}}
+              <form action="/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="false">
+              </form>
+            
+          {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  
+  </div>
+</div>
+
+<div class= "container"> 
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h3>Burgers you NEED to eat</h3>
+      <form class="create-update-form" action="/" method="POST">
+
+        <div class="form-group">
+          <label for="bu">Burgers you NEED to eat:</label>
+          <input type="text" id="bu" name="name">
+        </div>
+
+      <button type="submit"class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div> 
+</div>     
